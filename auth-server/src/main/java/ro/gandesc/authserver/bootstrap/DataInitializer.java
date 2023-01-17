@@ -28,12 +28,12 @@ public class DataInitializer implements CommandLineRunner {
     public void run(String... args) throws Exception {
         RegisteredClient r1 = RegisteredClient.withId("eb8a5e9c-851b-452c-afc4-37074821cd1d")
                 .clientId("client_abcd")
-                .clientSecret("clientSecret")
+                .clientSecret(passwordEncoder.encode("clientSecret"))
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
                 .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                 .scope(OidcScopes.OPENID)
                 .scope(OidcScopes.PROFILE)
-                .redirectUri("https://spring.io/auth")
+                .redirectUri("http://127.0.0.1:3000/authorized")
                 .build();
 
         registeredClientRepository.save(r1);
