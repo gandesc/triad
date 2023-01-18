@@ -10,11 +10,9 @@ import org.springframework.security.web.SecurityFilterChain;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final CorsCustomizer corsCustomizer;
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        corsCustomizer.corsCustomizer(http);
+        CorsConfig.customize(http);
 
         return http.oauth2ResourceServer(j -> j.jwt().jwkSetUri("http://localhost:8080/oauth2/jwks"))
                 .authorizeRequests()

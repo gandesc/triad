@@ -28,8 +28,6 @@ import ro.gandesc.authserver.config.keys.KeyManager;
 public class AuthServerConfig {
     private final KeyManager keyManager;
 
-    private final CorsCustomizer corsCustomizer;
-
     @Bean
     @Order(Ordered.HIGHEST_PRECEDENCE)
     public SecurityFilterChain securityFilterChainAs(HttpSecurity http) throws Exception {
@@ -42,7 +40,7 @@ public class AuthServerConfig {
                         exceptions.authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login")))
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
 
-        corsCustomizer.corsCustomizer(http);
+        CorsConfig.customize(http);
 
         return http.build();
     }

@@ -1,4 +1,4 @@
-package ro.gandesc.resourceserver.config;
+package ro.gandesc.authserver.config;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.stereotype.Component;
@@ -7,10 +7,9 @@ import org.springframework.web.cors.CorsConfigurationSource;
 
 import java.util.List;
 
-@Component
-public class CorsCustomizer {
+public class CorsConfig {
 
-    public void corsCustomizer(HttpSecurity http) throws Exception {
+    public static void customize(HttpSecurity http) throws Exception {
         http.cors(c -> {
             CorsConfigurationSource source = s -> {
                 CorsConfiguration cc = new CorsConfiguration();
